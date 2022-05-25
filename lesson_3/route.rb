@@ -12,7 +12,7 @@ class Route
       puts "Эту станцию нельзя удалить"
     else
       station_index = @all_station.index(station)
-      @all_station.delete_at(station_index)
+      @all_station.delete_at(station_index) unless station_index.nil?
     end
   end
 
