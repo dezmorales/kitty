@@ -50,7 +50,7 @@ class Train
     @route.stations[station_index - 1]
   end
 
-  def move_next_station
+  def move_forward
     return if @current_station == @route.last_station
 
     @speed = 60
@@ -60,7 +60,7 @@ class Train
     brake
   end
 
-  def move_previous_station
+  def move_back
     return if @current_station == @route.first_station
 
     @speed = 60
