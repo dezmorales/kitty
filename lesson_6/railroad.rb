@@ -21,6 +21,9 @@ class Rail
 
     @rail_stations << Station.new(station_name)
     puts "Cтанция #{station_name} создана"
+  rescue RuntimeError => e
+    puts e.message
+    retry
   end
 
   def create_cargo_train
@@ -66,6 +69,9 @@ class Rail
 
     @rail_wagons << CargoWagon.new(wagon_number)
     puts "Грузовой вагон номер #{wagon_number} создан"
+  rescue RuntimeError => e
+    puts e.message
+    retry
   end
 
   def create_passenger_wagon
@@ -79,6 +85,9 @@ class Rail
 
     @rail_wagons << PassengerWagon.new(wagon_number)
     puts "Пассажирский вагон номер #{wagon_number} создан"
+  rescue RuntimeError => e
+    puts e.message
+    retry
   end
 
   def create_route
@@ -105,6 +114,9 @@ class Rail
 
     @rail_routes << Route.new(first_station, last_station, number)
     puts "Маршрут #{number} создан"
+  rescue RuntimeError => e
+    puts e.message
+    retry
   end
 
   def add_station_to_route

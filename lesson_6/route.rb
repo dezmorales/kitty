@@ -9,17 +9,19 @@ class Route
 
   attr_reader :number, :stations
 
+  NUMBER_SAMPLE = /^([a-z]|\d){3}$/i.freeze
+
   @@routes = []
 
   def initialize(first_station, last_station, number)
     @number = number
     @stations = [first_station, last_station]
+    validate!
     @@routes.push(self)
     register_instance
-    validate!
   end
 
-  def all
+  def self.all
     @@routes
   end
 
@@ -48,7 +50,6 @@ class Route
 
   def validate!
     raise 'Не задана первая или последняя станция' unless first_station.is_a?(Station) || last_station.is_a?(Station)
-    raise 'Название маршрута не может быть пустым' if number.nil? || number.length.zero?
-    raise 'Недопустимый номер маршрута' if @number.length < 3
+    raise 'Недопустимый номер маршрута' if number !~ NUMBER_SAMPLE
   end
 end

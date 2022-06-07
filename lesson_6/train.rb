@@ -19,9 +19,9 @@ class Train
     @speed = 0
     @number = number
     @wagons = []
+    validate!
     @@trains.push(self)
     register_instance
-    validate!
   end
 
   class << self

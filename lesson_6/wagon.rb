@@ -9,6 +9,8 @@ class Wagon
 
   attr_reader :type, :number
 
+  NUMBER_SAMPLE = /^([a-z]|\d){3}$/i.freeze
+
   def initialize(number)
     @number = number
     @type = nil
@@ -18,7 +20,6 @@ class Wagon
   protected
 
   def validate!
-    raise 'Номер вагона не может быть пустым' if @number.nil? || @number.length.zero?
-    raise 'Недопустимый номер вагона' if @number.length < 3
+    raise 'Недопустимый номер вагона' if number !~ NUMBER_SAMPLE
   end
 end

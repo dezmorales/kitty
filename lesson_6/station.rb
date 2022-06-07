@@ -9,13 +9,15 @@ class Station
 
   attr_reader :trains, :name
 
+  NAME_SAMPLE = /^([a-z]|\d){3,}$/i.freeze
+
   @@stations = []
 
   def initialize(name)
     @name = name
     @trains = []
-    @@stations.push(self)
     validate!
+    @@stations.push(self)
     register_instance
   end
 
@@ -38,7 +40,6 @@ class Station
   private
 
   def validate!
-    raise 'Название станции не может быть пустым' if name.nil? || name.length.zero?
-    raise 'Недопустимое название станции' if @name.length < 3
+    raise 'Недопустимое название станции' if name !~ NAME_SAMPLE
   end
 end
