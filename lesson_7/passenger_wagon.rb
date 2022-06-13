@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './mod/wagon_capacity'
-
 class PassengerWagon < Wagon
-  include WagonCapacity
 
   attr_accessor :busy
 
@@ -12,5 +9,14 @@ class PassengerWagon < Wagon
     @busy = 0
     super
     @type = 'passenger'
+  end
+
+  def take_place
+    raise 'Не хватает места' if self.free_place < 1
+    @busy += 1
+  end
+
+  def free_place
+    @capacity - @busy
   end
 end

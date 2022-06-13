@@ -260,10 +260,16 @@ class Rail
       return
     end
 
-    puts 'Введите объем или количество мест которые хотите занять:'
-    wagon_capacity = gets.chomp.to_i
-    wagon.take_place(wagon_capacity)
-    puts 'Место зарезервировано'
+    if wagon.type == 'cargo'
+      puts 'Введите объем который хотите занять:'
+      wagon_capacity = gets.chomp.to_i
+      wagon.take_volume(wagon_capacity)
+      puts 'Место зарезервировано'
+    else
+      wagon.type == 'passenger'
+      wagon.take_place
+      puts 'Место зарезервировано'
+    end
   rescue RuntimeError => e
     puts e.message
     retry

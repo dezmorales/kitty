@@ -13,6 +13,7 @@ class Wagon
 
   def initialize(number, capacity)
     @capacity = capacity
+    @busy = 0
     @number = number
     @type = nil
     validate!

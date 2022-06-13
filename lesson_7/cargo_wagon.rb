@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
-require_relative './mod/wagon_capacity'
-
 class CargoWagon < Wagon
-  include WagonCapacity
 
   attr_accessor :busy
 
   def initialize(number, capacity)
-    @capacity = capacity
-    @busy = 0
     super
     @type = 'cargo'
+  end
+
+  def take_volume(amount)
+    raise 'Не хватает места' if amount > self.free_place
+    @busy += amount
+  end
+
+  def free_place
+    @capacity - @busy
   end
 end
