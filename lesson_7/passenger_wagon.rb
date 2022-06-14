@@ -15,8 +15,4 @@ class PassengerWagon < Wagon
     raise 'Не хватает места' if self.free_place < 1
     @busy += 1
   end
-
-  def free_place
-    @capacity - @busy
-  end
 end

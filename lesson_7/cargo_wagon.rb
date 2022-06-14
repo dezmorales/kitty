@@ -13,8 +13,4 @@ class CargoWagon < Wagon
     raise 'Не хватает места' if amount > self.free_place
     @busy += amount
   end
-
-  def free_place
-    @capacity - @busy
-  end
 end

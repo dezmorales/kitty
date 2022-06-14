@@ -19,6 +19,10 @@ class Wagon
     validate!
   end
 
+  def free_place
+    @capacity - @busy
+  end
+
   protected
 
   def validate!
