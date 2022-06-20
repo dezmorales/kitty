@@ -3,21 +3,23 @@
 require_relative './mod/company'
 require_relative './mod/instance_counter'
 require_relative './mod/validate'
+require_relative './mod/accessors'
 
 class Train
   include Manufacturer
   include InstanceCounter
   include Validate
+  extend Accessors
 
   attr_reader :speed, :number, :wagons, :current_station, :type
 
   attr_accessor_with_history :var1, :var2
   strong_attr_accessor :var3, String
 
+  NUMBER_SAMPLE = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i.freeze
+
   validate :number, :presence
   validate :number, :format, NUMBER_SAMPLE
-
-  NUMBER_SAMPLE = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i.freeze
 
   def initialize(number)
     @speed = 0
